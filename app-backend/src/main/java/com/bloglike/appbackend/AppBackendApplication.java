@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.bloglike.appbackend.model.JobPost;
 import com.bloglike.appbackend.repository.JobPostRepository;
 
 
@@ -15,6 +14,7 @@ import com.bloglike.appbackend.repository.JobPostRepository;
 public class AppBackendApplication implements CommandLineRunner{
 	@Autowired
 	JobPostRepository jpRepo;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppBackendApplication.class, args);

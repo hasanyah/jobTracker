@@ -23,6 +23,14 @@ public class JobPostRepositoryImpl implements JobPostRepository {
         List<JobPost> jobs = mongoTemplate.find(query, JobPost.class);
         return jobs;
     }
+    
+    @Override
+    public JobPost findById(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(id));
+        JobPost job = mongoTemplate.findOne(query, JobPost.class);
+        return job;
+    }
 
     @Override
     public List<JobPost> findByLocation(String location) {
@@ -35,7 +43,7 @@ public class JobPostRepositoryImpl implements JobPostRepository {
     @Override
     public List<JobPost> findByCompanyName(String companyName) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("companyname").is(companyName));
+        query.addCriteria(Criteria.where("companyName").is(companyName));
         List<JobPost> jobs = mongoTemplate.find(query, JobPost.class);
         return jobs;
     }
@@ -58,7 +66,7 @@ public class JobPostRepositoryImpl implements JobPostRepository {
     public void updateCompanyName(String id, String companyName) {
         Query query = new Query(Criteria.where("id").is(id));
         Update update = new Update();
-        update.set("companyname", companyName);
+        update.set("companyName", companyName);
         
         UpdateResult result = mongoTemplate.updateFirst(query, update, JobPost.class);
 

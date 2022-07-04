@@ -7,6 +7,7 @@ import com.bloglike.appbackend.model.JobPost;
 public interface JobPostRepository {
     
     List<JobPost> findAll();
+    JobPost findById(String id);
     List<JobPost> findByLocation(String location);
     List<JobPost> findByCompanyName(String companyName);
 
