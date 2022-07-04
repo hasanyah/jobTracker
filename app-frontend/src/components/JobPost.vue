@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import JobPostService from '../services/JobPostService';
 import { JobPost } from '../types/JobPostTypes.interface'
+import dayjs from 'dayjs'
 
 const jobposts = ref<JobPost[]>()
 
@@ -11,7 +12,46 @@ function getJobPosts() {
     })
 }
 
+function getJobPostById(id: string) {
+    JobPostService.getJobPostById(id).then((response) => {
+        jobposts.value = response.data;
+    })
+}
+
+function toDays(date: string): string {
+    if (!date)
+        return "N/A"
+
+    let now = dayjs()
+    let then = dayjs(date)
+    let term = 'day'
+    let diff = now.diff(then, term)
+    if (diff < 1) {
+        term = 'hour'
+        diff = now.diff(then, term)
+    }
+    if (diff < 1) {
+        term = 'minute'
+        diff = now.diff(then, term)
+    }
+    if (diff < 1) {
+        term = 'second'
+        diff = now.diff(then, term)
+    }
+
+    if (diff > 1)
+        term += 's'
+
+    return diff + " " + term + " ago"
+}
+
 getJobPosts()
+</script>
+
+<script lang="ts">
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+library.add(faUpRightFromSquare)
 </script>
 
 <template>
@@ -19,21 +59,34 @@ getJobPosts()
     <h1 class="text-center">Job Posts</h1>
     <table class="table table-striped">
         <thead>
-            <th>ID</th>
             <th>Title</th>
             <th>Company</th>
+            <th>Applied</th>
+            <th>Status</th>
             <th>Location</th>
             <th>URL</th>
         </thead>
         <tbody>
             <tr v-for="jp in jobposts" :key="jp.id">
-                <td>{{ jp.id }}</td>
                 <td>{{ jp.title }}</td>
                 <td>{{ jp.companyName }}</td>
+                <td>{{ toDays(jp.appliedDate) }}</td>
+                <td>{{ jp.status }}</td>
                 <td>{{ jp.location }}</td>
-                <td>{{ jp.link }}</td>
+                <td>
+                    <a class="btn btn-labeled" target="_blank" :href="jp.link">
+                    
+                        <!-- @click="getJobPostById(jp.id)" -->
+                            <span class="btn-label">
+                                <font-awesome-icon :icon="['fas', 'up-right-from-square']" />
+                            </span>
+                    
+                        </a>
+                </td>
             </tr>
         </tbody>
     </table>
+
+    <!-- TODO: Map integration would be cool -->
 </div>
 </template>

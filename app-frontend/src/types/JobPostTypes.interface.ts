@@ -4,4 +4,6 @@ export interface JobPost {
     companyName?: string;
     link?: string;
     location?: string;
+    appliedDate?: string;
+    status?: string;
 }
