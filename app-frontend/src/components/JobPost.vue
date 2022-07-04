@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import JobPostService from '../services/JobPostService';
 import { JobPost } from '../types/JobPostTypes.interface'
-import dayjs from 'dayjs'
+import moment from 'moment'
 
 const jobposts = ref<JobPost[]>()
 
@@ -22,12 +22,12 @@ function toDays(date: string): string {
     if (!date)
         return "N/A"
 
-    let now = dayjs()
-    let then = dayjs(date)
-    let term = 'day'
+    let now = moment()
+    let then = moment(date)
+    let term = "days" as Diff
     let diff = now.diff(then, term)
+
     if (diff < 1) {
-        term = 'hour'
         diff = now.diff(then, term)
     }
     if (diff < 1) {
