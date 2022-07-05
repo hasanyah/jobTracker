@@ -22,27 +22,29 @@ function toDays(date: string): string {
     if (!date)
         return "N/A"
 
+    let unit : moment.unitOfTime.Diff;
+    unit = "day";
     let now = moment()
     let then = moment(date)
-    let term = "days" as Diff
-    let diff = now.diff(then, term)
+    let diff = now.diff(then, unit )
 
     if (diff < 1) {
-        diff = now.diff(then, term)
+        unit = "hour"
+        diff = now.diff(then, unit)
     }
     if (diff < 1) {
-        term = 'minute'
-        diff = now.diff(then, term)
+        unit = "minute"
+        diff = now.diff(then, unit)
     }
     if (diff < 1) {
-        term = 'second'
-        diff = now.diff(then, term)
+        unit = "second"
+        diff = now.diff(then, unit)
     }
 
     if (diff > 1)
-        term += 's'
+        unit += 's'
 
-    return diff + " " + term + " ago"
+    return diff + " " + unit + " ago"
 }
 
 getJobPosts()
