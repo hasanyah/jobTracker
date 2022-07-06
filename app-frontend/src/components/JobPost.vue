@@ -5,10 +5,12 @@ import { JobPost } from '../types/JobPostTypes.interface';
 import CustomDoubleRow from './CustomDoubleRow.vue';
 
 const jobposts = ref<JobPost[]>()
-
+const loading = ref<Boolean>(false);
 function getJobPosts() {
+    loading.value = true;
     JobPostService.getJobPosts().then((response) => {
         jobposts.value = response.data;
+        loading.value = false;
     })
 }
 
@@ -24,6 +26,12 @@ getJobPosts()
 <template>
 <div class="container">
     <h1 class="text-center">Job Posts</h1>
+    
+    <div v-show="loading" class="spinner-border spinner-border-sm" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    
     <table class="table table-striped">
         <thead>
             <th>Title</th>
