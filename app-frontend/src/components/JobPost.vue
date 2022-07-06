@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import JobPostService from '../services/JobPostService';
-import { JobPost } from '../types/JobPostTypes.interface'
-import moment from 'moment'
+import { JobPost } from '../types/JobPostTypes.interface';
+import CustomDoubleRow from './CustomDoubleRow.vue';
 
 const jobposts = ref<JobPost[]>()
 
@@ -18,42 +18,7 @@ function getJobPostById(id: string) {
     })
 }
 
-function toDays(date: string): string {
-    if (!date)
-        return "N/A"
-
-    let unit : moment.unitOfTime.Diff;
-    unit = "day";
-    let now = moment()
-    let then = moment(date)
-    let diff = now.diff(then, unit )
-
-    if (diff < 1) {
-        unit = "hour"
-        diff = now.diff(then, unit)
-    }
-    if (diff < 1) {
-        unit = "minute"
-        diff = now.diff(then, unit)
-    }
-    if (diff < 1) {
-        unit = "second"
-        diff = now.diff(then, unit)
-    }
-
-    if (diff > 1)
-        unit += 's'
-
-    return diff + " " + unit + " ago"
-}
-
 getJobPosts()
-</script>
-
-<script lang="ts">
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-library.add(faUpRightFromSquare)
 </script>
 
 <template>
@@ -69,23 +34,7 @@ library.add(faUpRightFromSquare)
             <th>URL</th>
         </thead>
         <tbody>
-            <tr v-for="jp in jobposts" :key="jp.id">
-                <td>{{ jp.title }}</td>
-                <td>{{ jp.companyName }}</td>
-                <td>{{ toDays(jp.appliedDate) }}</td>
-                <td>{{ jp.status }}</td>
-                <td>{{ jp.location }}</td>
-                <td>
-                    <a class="btn btn-labeled" target="_blank" :href="jp.link">
-                    
-                        <!-- @click="getJobPostById(jp.id)" -->
-                            <span class="btn-label">
-                                <font-awesome-icon :icon="['fas', 'up-right-from-square']" />
-                            </span>
-                    
-                        </a>
-                </td>
-            </tr>
+            <CustomDoubleRow v-for="jp in jobposts" :key="jp.id" :data="jp"/>
         </tbody>
     </table>
 
