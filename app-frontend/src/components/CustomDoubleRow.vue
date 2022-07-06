@@ -35,6 +35,10 @@ function toDays(date: string): string {
     return diff + " " + unit + " ago"
 }
 
+function dateToReadableFormat(date: string): string {
+    return moment(date).format('MMMM d, YYYY - HH:mm');
+}
+
 </script>
 <script lang="ts">
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -46,7 +50,7 @@ library.add(faUpRightFromSquare)
 <tr data-bs-toggle="collapse" :data-bs-target="'#collapsingJobPost'+data.id" aria-expanded="false" :aria-controls="'collapsingJobPost'+data.id">
     <td>{{ data.title }}</td>
     <td>{{ data.companyName }}</td>
-    <td>{{ toDays(data.appliedDate) }}</td>
+    <td data-bs-toggle="tooltip" data-bs-placement="top" :title="dateToReadableFormat(data.appliedDate)">{{ toDays(data.appliedDate) }}</td>
     <td>{{ data.status }}</td>
     <td>{{ data.location }}</td>
     <td><a class="btn btn-labeled" target="_blank" :href="data.link">
