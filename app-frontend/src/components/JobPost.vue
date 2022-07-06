@@ -20,6 +20,12 @@ function getJobPostById(id: string) {
     })
 }
 
+function addJobPost(newPost: JobPost) {
+    JobPostService.createJobPost(newPost).then((response) => {
+        jobposts.value.push(response.data)
+    })
+}
+
 getJobPosts()
 </script>
 
@@ -30,7 +36,6 @@ getJobPosts()
         <div v-show="loading" class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
-
 
         <table v-show="!loading" class="table table-striped">
             <thead>
@@ -60,19 +65,19 @@ getJobPosts()
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="Job title" class="col-form-label">Job title:</label>
+                                <label for="job-title" class="col-form-label">Job title:</label>
                                 <input type="text" class="form-control" id="job-title">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Company Name:</label>
+                                <label for="company-name" class="col-form-label">Company Name:</label>
                                 <input type="text" class="form-control" id="company-name">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Location:</label>
+                                <label for="company-location" class="col-form-label">Location:</label>
                                 <input type="text" class="form-control" id="company-location">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">URL:</label>
+                                <label for="job-url" class="col-form-label">URL:</label>
                                 <input type="text" class="form-control" id="job-url">
                             </div>
                         </form>
