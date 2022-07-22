@@ -1,4 +1,4 @@
-package com.bloglike.appbackend.repository;
+package com.jobTrackerBackend.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
-import com.bloglike.appbackend.model.JobPost;
+import com.jobTrackerBackend.model.JobPost;
 import com.mongodb.client.result.UpdateResult;
 
 @Component

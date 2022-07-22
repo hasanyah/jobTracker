@@ -1,8 +1,8 @@
-package com.bloglike.appbackend.repository;
+package com.jobTrackerBackend.repository;
 
 import java.util.List;
 
-import com.bloglike.appbackend.model.JobPost;
+import com.jobTrackerBackend.model.JobPost;
 
 public interface JobPostRepository {
     

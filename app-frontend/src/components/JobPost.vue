@@ -4,6 +4,11 @@ import JobPostService from '../services/JobPostService';
 import { JobPost } from '../types/JobPostTypes.interface';
 import CustomDoubleRow from './CustomDoubleRow.vue';
 
+const newJobTitle = ref<string>("")
+const newJobCompany = ref<string>("")
+const newJobLocation = ref<string>("")
+const newJobURL = ref<string>("")
+
 const jobposts = ref<JobPost[]>()
 const loading = ref<Boolean>(false);
 function getJobPosts() {
@@ -66,19 +71,19 @@ getJobPosts()
                         <form>
                             <div class="mb-3">
                                 <label for="job-title" class="col-form-label">Job title:</label>
-                                <input type="text" class="form-control" id="job-title">
+                                <input v-model="newJobTitle" type="text" class="form-control" id="job-title">
                             </div>
                             <div class="mb-3">
                                 <label for="company-name" class="col-form-label">Company Name:</label>
-                                <input type="text" class="form-control" id="company-name">
+                                <input v-model="newJobCompany" type="text" class="form-control" id="company-name">
                             </div>
                             <div class="mb-3">
                                 <label for="company-location" class="col-form-label">Location:</label>
-                                <input type="text" class="form-control" id="company-location">
+                                <input v-model="newJobLocation" type="text" class="form-control" id="company-location">
                             </div>
                             <div class="mb-3">
                                 <label for="job-url" class="col-form-label">URL:</label>
-                                <input type="text" class="form-control" id="job-url">
+                                <input v-model="newJobURL" type="text" class="form-control" id="job-url">
                             </div>
                         </form>
                     </div>

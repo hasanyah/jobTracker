@@ -1,4 +1,4 @@
-package com.bloglike.appbackend.model;
+package com.jobTrackerBackend.model;
 
 import java.util.Date;
 

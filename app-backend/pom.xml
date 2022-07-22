@@ -8,11 +8,11 @@
 		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bloglike</groupId>
+	<groupId>com.jobTrackerBackend</groupId>
 	<artifactId>app-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>app-backend</name>
-	<description>Spring boot backend for bloglike application</description>
+	<description>Spring boot backend for jobTracker application</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
