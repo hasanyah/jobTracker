@@ -18,8 +18,8 @@ import com.jobTrackerBackend.model.JobPost;
 import com.jobTrackerBackend.repository.JobPostRepository;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
-@CrossOrigin("http://localhost:3000")
 public class JobPostController {
     
     @Autowired

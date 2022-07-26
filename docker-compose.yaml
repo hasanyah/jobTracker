@@ -3,8 +3,8 @@ services:
   mongodb:
     image: mongo
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=
-      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_ROOT_USERNAME=${JOBTRACKER_DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${JOBTRACKER_DB_PWD}
     volumes:
       - ./mongo-volume:/data/db
     ports:
